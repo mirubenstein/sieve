@@ -8,7 +8,7 @@ class Sieve
   end
 
   def primes
-    0.upto(number).select { |num| Prime.prime?(num) }
+    Prime.take_while { |num| num <= number }
   end
 end
 
