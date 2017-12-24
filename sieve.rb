@@ -8,7 +8,7 @@ class Sieve
   end
 
   def primes
-    Prime.take_while { |num| num <= number }
+    Prime.entries number
   end
 end
 
