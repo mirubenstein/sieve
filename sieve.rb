@@ -1,21 +1,23 @@
 class Sieve
-  attr_reader :number
+  attr_reader :limit, :prime_numbers
 
-  def initialize(number)
-    @number = number
-    @primes = []
+  def initialize(limit)
+    @limit = limit
+    @prime_numbers = []
   end
 
   def primes
-    recursive_primes((2..@number).to_a)
+    recursive_primes((2..limit).to_a)
   end
 
   def recursive_primes(numbers)
     if numbers.empty?
-      @primes
+      prime_numbers
     else
-      @primes << numbers.shift
-      recursive_primes(numbers.reject { |num| (num % @primes.last).zero? })
+      prime_numbers << numbers.shift
+      recursive_primes(
+        numbers - (prime_numbers.last**2..limit).step(prime_numbers.last).to_a
+      )
     end
   end
 end
